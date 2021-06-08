@@ -1,0 +1,57 @@
+
+
+
+.guess {
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  background-color: rgb(214, 205, 205);
+  border: 0.5px solid rgb(0, 0, 0);
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.guessField {
+  width: 90%;
+  border: none;
+}
+
+.button {
+  color: rgb(255, 255, 255);
+  background-color: rgb(70, 70, 230);
+  border: 2px solid rgb(24, 24, 170);
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.counter {
+  width: 90%;
+  background-color: cornflowerblue;
+  border-radius: 4px;
+  }
+
+.warning {
+  color: white;
+  background-color: red;
+  width: 90%;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.info {
+  background-color: tomato;
+  width: 90%;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+.success {
+  background-color: rgb(19, 192, 34);
+  width: 90%;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+.gameover {
+  background-color: violet;
+  border-radius: 5px;
+}
