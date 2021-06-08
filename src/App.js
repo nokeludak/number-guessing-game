@@ -12,7 +12,17 @@ const UserNumber = () => {
 
   const submit = () => {
     setNumbers((numbers) => [...numbers, number]);
-        if (number < randomNumber && number !== "") {
+        if (number < 1) {
+          setResults(
+            <div className="incorrect-number">&nbsp;Please insert number between 1 and 100</div>)
+            setNumber("");
+        }
+        else if (number > 100) {
+          setResults(
+          <div className="incorrect-number">&nbsp;Please insert number between 1 and 100</div>)
+          setNumber("");
+        }
+        else if (number < randomNumber) {
       setResults(
         <div className="info">&nbsp;UPS! Last guess was too low!</div>
       );
