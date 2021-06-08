@@ -21,6 +21,7 @@
   border: 2px solid rgb(24, 24, 170);
   border-radius: 4px;
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .counter {
@@ -52,6 +53,20 @@
 }
 
 .gameover {
-  background-color: violet;
+  background-color: rgb(228, 23, 23);
   border-radius: 5px;
+}
+
+.info1 {
+  background-color: rgb(33, 180, 191);
+  width: 90%;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+button:disabled
+{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }

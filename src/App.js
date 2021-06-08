@@ -8,83 +8,109 @@ const UserNumber = () => {
   const onChange = (e) => setNumber(e.target.value);
   const [results, setResults] = useState("");
   const [count, setCount] = useState(10);
-  const [disabled, setDisabled] = useState(false);
+  const [isOver, setIsOver] = useState(false);
 
   const submit = () => {
     setNumbers((numbers) => [...numbers, number]);
-    if (number < randomNumber && number !== "") {
+        if (number < randomNumber && number !== "") {
       setResults(
         <div className="info">&nbsp;UPS! Last guess was too low!</div>
       );
       setCount(count - 1);
+      setNumber("");
     } else if (number > randomNumber) {
       setResults(
-        <div className="info">&nbsp;UPS! Last guess was too high!</div>
+        <div className="info1">&nbsp;UPS! Last guess was too high!</div>
       );
       setCount(count - 1);
+      setNumber("");
     } else {
       setResults(
         <div className="success">&nbsp;Congratulations! You got it right!</div>
-        
       );
-      setDisabled(<button id="submitButton" disabled={disabled} />);
-      setDisabled(<button id="startButton" disabled={disabled} />);
-      
+      setIsOver(true);
+      setNumber("");
     }
     if (count < 2) {
-      setResults(<div className="gameover">
-        <button className="startnew" disabled={disabled} type="button" id="startButton" class="startButton"
-        onClick={reset}>Start new game</button>
-        &nbsp;&nbsp;GAME OVER</div>);
-        setDisabled(<button id="submitButton" disabled={disabled} />)
+      setResults(<div className="warning">&nbsp;GAME OVER!</div>);
+      setIsOver(true);
     }
   };
   const clear = (e) => {
     e.target.value = "";
   };
-  
+
   const reset = () => {
-    setRandomNumber(Math.floor(Math.random() * 100) +1);
+    setRandomNumber(Math.floor(Math.random() * 100) + 1);
     setCount(10);
-    setResults('');
-    setDisabled(false);
+    setResults("");
     setNumbers([]);
-    setNumber('');
-   
-  }
+    setNumber("");
+    setIsOver(false);
+  };
 
   const clearButton = (e) => {
-    setResults('');
-    setNumber('');
-  }
+    setResults("");
+    setNumber("");
+  };
   return (
     <div className="guess">
       <input
-          onFocus={(e) => clear(e)}
-          type="number"
-          id="guess"
-          className="guessField"
-          placeholder="Guess The Number"
-          value={number}
-          onChange={onChange}
-        />
-      <button className="button" disabled={disabled} type='submit' id='submitButton' onClick={submit}>Submit Number</button>
+        onFocus={(e) => clear(e)}
+        type="number"
+        id="guess"
+        min="1"
+        max="100"
+        className="guessField"
+        placeholder="Guess The Number"
+        value={number}
+        onChange={onChange}
+      />
+      <button
+        className="button"
+        disabled={isOver}
+        type="submit"
+        id="submitButton"
+        onClick={submit}
+      >
+        Submit Number
+      </button>
       &nbsp;&nbsp;
-      <button className="button" type='reset' id='resetButton' onClick={reset}>Reset</button>
+      <button
+        className="button"
+        type="reset"
+        id="resetButton"
+        onClick={reset}
+        disabled={isOver}
+      >
+        Reset
+      </button>
       &nbsp;&nbsp;
-      <button className="button" type='clear' id='clearButton' onClick={clearButton}>Clear</button>
+      <button
+        className="button"
+        type="clear"
+        id="clearButton"
+        onClick={clearButton}
+        disabled={isOver}
+      >
+        Clear
+      </button>
       {results}
-      <div className="counter"><p>&nbsp;You have {count} tries left </p></div>
-      <div className="previous">&nbsp;Previous guesses: &nbsp;
+      {isOver && (
+        <button className="button" onClick={reset}>
+          Start new game
+        </button>
+      )}
+      <div className="counter">
+        <p>&nbsp;You have {count} tries left </p>
+      </div>
+      <div className="previous">
+        &nbsp;Previous guesses: &nbsp;
         {numbers.map((e, index) => {
           return <span key={index}>{(index ? ", " : "") + e}</span>;
         })}
       </div>
-      
-  
     </div>
   );
 };
 export default UserNumber;
-
-
